@@ -1,24 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react';
 
 function App() {
+
+  const [eur,setEur] = useState(0);
+  const [gbp,setGbp] = useState(0);
+
+  function handleSubmit(e) {
+    // const conversion = eur * 0.9;
+    // setGbp(conversion);
+    e.preventDefault();
+    setGbp(eur * 0.9);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div id="container">
+      <h3>Currency calculator</h3>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Eur</label>
+          <input type="number" onChange={e => setEur(e.target.value)} value={eur}/>
+        </div>
+        <div>
+          <label>Gbp</label>
+          <output>{gbp}</output>
+        </div>
+        <button>Calculate</button>
+      </form>
+      </div>
   );
 }
 
